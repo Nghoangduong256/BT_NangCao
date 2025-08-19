@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap 5.0 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/25bba1eec4.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Landing Page</title>
+  </head>
+  <body>
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <!-- Hamburger nằm trong sidebar -->
+      <button id="sbToggle" class="sb-toggle mt-1" aria-label="Mở/đóng sidebar">
+        <i class="fa-solid fa-bars"></i>
+        <span class="sb-label fw-semibold">Thu gọn / Mở rộng</span>
+      </button>
+
+      <!-- Thành phần menu -->
+      <ul class="sb-menu mt-1">
+        <li>
+          <a class="sb-link" href="#"
+            ><i class="sb-icon fa-solid fa-home"></i
+            ><span class="sb-label">Home</span></a
+          >
+        </li>
+        <li>
+          <a class="sb-link active" href="#"
+            ><i class="sb-icon fa-solid fa-user-graduate"></i
+            ><span class="sb-label">Quản lý học sinh</span></a
+          >
+        </li>
+        <li>
+          <a class="sb-link" href="#"
+            ><i class="sb-icon fa-solid fa-calendar-days"></i
+            ><span class="sb-label">Thời khóa biểu</span></a
+          >
+        </li>
+        <li>
+          <a class="sb-link" href="#"
+            ><i class="sb-icon fa-solid fa-gear"></i
+            ><span class="sb-label">Cài đặt</span></a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ===== Header ===== -->
+    <header class="topbar">
+      <div class="brand-wrap">
+        <img
+          src="./img/VTI_logo.png"
+          alt="VTI Academy Logo"
+          width="20%"
+          height="20%"
+        />
+        <h1 class="greet">Quản lý học sinh</h1>
+      </div>
+
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- Chuông thông báo -->
+        <button class="icon-btn" title="Thông báo">
+          <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <!-- Avatar -->
+        <img
+          class="avatar"
+          src="https://i.pinimg.com/736x/50/70/77/5070770094960235fa3fff38e4785164.jpg"
+          alt="user"
+        />
+      </div>
+
+      <!-- Logout/Login -->
+      <button class="icon-btn" title="Logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </header>
+
+    <!-- ===== Content ===== -->
+    <main class="page">
+      <!-- Tìm kiếm -->
+      <div class="card">
+        <div class="card-header">
+          <h5>Thông tin tìm kiếm</h5>
+        </div>
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 fw-bold mb-2">Nhập từ khóa</div>
+              <div class="col-4 fw-bold mb-2">Lớp học</div>
+              <div class="col fw-bold mb-2 align-middle">Tìm kiếm</div>
+            </div>
+            <div class="row">
+              <div class="col-6 mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchKeyword"
+                  placeholder="Nhập từ khóa tìm kiếm"
+                />
+              </div>
+              <div class="col-4 mb-2">
+                <select
+                  class="form-select"
+                  id="classSelect"
+                  placeholder="Chọn lớp học"
+                >
+                  <option value="Java">Java Fullstack</option>
+                  <option value="Python">Python</option>
+                  <option value="Tester">Tester</option>
+                </select>
+              </div>
+              <div class="col mb-2">
+                <button class="btn btn-primary">Tìm kiếm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <!-- Danh sách học sinh -->
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">Danh sách học sinh</h5>
+            <div>
+              <button class="btn btn-primary" onclick="fillData()">
+                Bấm để lấy dữ liệu
+              </button>
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                onclick="clearForm()"
+              >
+                <i class="fas fa-plus" style="color: #ffffff"></i> Thêm dữ liệu
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr class="bg-dark text-light">
+                <th scope="col">STT</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Họ và tên</th>
+                <th scope="col">Lớp học</th>
+                <th scope="col">Email</th>
+                <th scope="col">SĐT</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="data-table">
+              <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+              <!-- Ví dụ: -->
+              <!-- <tr>
+                <th scope="row">1</th>
+                <td>10:30</td>
+                <td>Duowng</td>
+                <td>
+                  <img
+                    src="https://i.pinimg.com/736x/8a/81/08/8a8108bfd8036296de3baaf921969134.jpg"
+                    alt="//"
+                    width="10%"
+                  />
+                </td>
+                <td>Dong Anh</td>
+                <td>25/12/2000</td>
+              </tr> -->
+            </tbody>
+          </table>
+          <br />
+          <!-- Phân trang -->
+          <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                  >Previous</a
+                >
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item" aria-current="page">
+                <a class="page-link" href="">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bd-footer py-5 mt-5 bg-light">
+        <div class="container py-5">
+          <div class="row justify-content-center">
+            <div class="col-3 mb-3 mx-3">
+              <h5>Kết nối với chúng tôi</h5>
+              <iframe
+                src="https://vtiacademy.edu.vn/"
+                height="200"
+                width="300"
+                title="Iframe Example"
+              ></iframe>
+              <div class="my-3">
+                <i class="fab fa-tiktok fa-2xl m-1"></i>
+                <i
+                  class="fab fa-facebook fa-2xl m-1"
+                  style="color: #0091ff"
+                  width="50"
+                  height="50"
+                ></i>
+                <i
+                  class="fab fa-youtube fa-2xl m-1"
+                  style="color: #f50000"
+                  width="50"
+                  height="50"
+                ></i>
+              </div>
+            </div>
+            <div class="col-2 mb-3 mx-3 p-0">
+              <h5>Cơ sở Hà Nội</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>T7, 235 Hoàng Cầu Mới, Đống Đa,
+                  Hà Nội
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>T9, Toà nhà Handico Tower, Phạm
+                  Hùng, Từ Liêm, Hà Nội
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>VTI Building, Khu đô thị Mễ Trì
+                  Hạ, Từ Liêm, Hà Nội
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>T3, Tháp A, Tòa nhà Sông Đà, Nam
+                  Từ Liêm, Hà Nội
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-phone"></i>Hotline: 0865.359.388 -
+                  0866.805.563
+                </li>
+              </ul>
+            </div>
+            <div class="col-2 mb-3 mx-3 p-0">
+              <h5>Cơ sở Đà Nẵng</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>T4, toà nhà Phúc Hưng Việt, số
+                  43-45 Nguyễn Văn Linh, Quận Hải Châu, TP Đà Nẵng
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-phone"></i>Hotline: 0968.834.386
+                </li>
+              </ul>
+              <br />
+              <h5>Cơ sở Hồ Chí Minh</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>T4, 35 Mạc Đĩnh Chi, Q.1, TP.HCM
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-phone"></i>Hotline: 0978.067.066
+                </li>
+              </ul>
+            </div>
+            <div class="col-2 mb-3 mx-3 p-0">
+              <h5>Cơ sở Nhật Bản</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>4th Floor, T&T Building, 8-21
+                  Tomihisacho, Shinjuku-ku, Tokyo 162-0067
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>4th Floor, Belx Shinjuku
+                  Building, 23-14 Aizumicho, Shinjuku-ku, Tokyo 160-0005
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>Room 608, Sanko Building Semba,
+                  1-3-9 Minamihonmachi, Chuo-ku, Osaka-shi, Osaka 541-0054
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>Room 651, Business Center Nagoya
+                  Sakae, 3-22-24 Nishiki, Naka-ku, Nagoya-shi, Aichi 460-0003
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>Room 943, 9th Floor, Daini Okabe
+                  Building, 3-27-25 Hakata Ekimae, Hakata-ku, Fukuoka-shi,
+                  Fukuoka 812-0011
+                </li>
+              </ul>
+              <br />
+              <h5>Cơ sở Hàn Quốc</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>13 Floor, Goryeo Daeyeongak
+                  Tower, 97 Toegye-ro, Jung-gu, Seoul, Korea 04535
+                </li>
+              </ul>
+              <br />
+              <h5>Cơ sở Singapore</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-map-pin"></i>20A Tanjong Pagar Road
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Tạo mới/Chỉnh sửa học sinh
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <input type="number" class="form-control" id="id" hidden />
+                <label for="message-text" class="col-form-label">Avatar:</label>
+                <input type="text" class="form-control" id="avatar" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Họ và tên:</label
+                >
+                <input type="text" class="form-control" id="fullname" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Lớp học:</label
+                >
+                <select name="class" id="className" class="form-control">
+                  <option value="Java">Java Fullstack</option>
+                  <option value="Python">Python</option>
+                  <option value="Ruby">Tester</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Email:</label>
+                <input type="email" class="form-control" id="email" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Số điện thoại:</label
+                >
+                <input type="text" class="form-control" id="phoneNumber" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Ngày sinh:</label
+                >
+                <input type="date" class="form-control" id="dateOfBirth" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Đóng
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="addNewStudent()"
+            >
+              Thêm mới
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JavaScript -->
+    <script src="./js/function.js"></script>
+  </body>
+</html>
