@@ -1,7 +1,6 @@
 package BaiTapOOP.CapDo3_NangCao.Bai6;
 
 
-
 public class Main {
     public static void main(String[] args) {
         Electronics electronicProduct1 = new Electronics("Tủ lạnh Samsung Inverter 307 lít", 12940000, "Tủ lạnh", 125, "Samsung", "2 năm");
@@ -9,7 +8,9 @@ public class Main {
         Clothing clothingProduct1 = new Clothing("AIRism Cotton Áo Thun Không Tay", 293000, "Áo thun", 1560, "XS", "Vải\n" +
                 "53% Bông, 47% Polyeste ( 30% Sử Dụng Sợi Polyeste Tái Chế )");
 
-        
+        electronicProduct1.thongTinSanPham(electronicProduct1);
+        electronicProduct2.thongTinSanPham(electronicProduct2);
+        clothingProduct1.thongTinSanPham(clothingProduct1);
 
     }
 
