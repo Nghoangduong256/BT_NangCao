@@ -1,6 +1,7 @@
-package BaiTapOOP.CapDo1_DonGian.Bai4;
+package BaiTapOOP.CapDo2_TrungBinh.Bai4;
 
-import static BaiTapOOP.CapDo1_DonGian.Bai4.Status.*;
+import static BaiTapOOP.CapDo2_TrungBinh.Bai4.Order.updateOrderStatus;
+import static BaiTapOOP.CapDo2_TrungBinh.Bai4.Status.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +11,9 @@ public class Main {
         Order[] orderList = {order1, order2, order3};
 
         //Cập nhật đơn hàng
-        Order.updateOrderStatus(orderList,"C55566", DA_HUY);
+        updateOrderStatus(orderList,"C55566", DA_HUY);
         
     }
+
+
 }

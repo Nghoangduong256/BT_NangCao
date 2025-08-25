@@ -1,5 +1,7 @@
 package BaiTapOOP.CapDo1_DonGian.Bai1;
 
+import static BaiTapOOP.CapDo1_DonGian.Bai1.Product.thongTinSanPham;
+
 public class Main {
     public static void main(String[] args) {
         Product ps5 = new Product();
@@ -18,11 +20,5 @@ public class Main {
         thongTinSanPham(laptopAcer);
     }
 
-    public static void thongTinSanPham(Product product){
-        System.out.println("Thông tin của sản phẩm");
-        System.out.println("Tên sản phẩm: " + product.getName());
-        System.out.println("Loại sản phẩm: " + product.getCategory());
-        System.out.println("Tồn kho: " + product.getStock());
-        System.out.println("Giá: " + product.getPrice());
-    }
+
 }

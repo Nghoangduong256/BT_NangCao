@@ -1,8 +1,8 @@
-package BaiTapOOP.CapDo1_DonGian.Bai1;
+package BaiTapOOP.CapDo2_TrungBinh.Bai3;
 
 public class Product {
     private String name;
-    private long price;
+    private int price;
     private String category;
     private int stock;
 
@@ -15,11 +15,11 @@ public class Product {
         this.name = name;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -39,11 +39,4 @@ public class Product {
         this.stock = stock;
     }
 
-    public static void thongTinSanPham(Product product){
-        System.out.println("Thông tin của sản phẩm");
-        System.out.println("Tên sản phẩm: " + product.getName());
-        System.out.println("Loại sản phẩm: " + product.getCategory());
-        System.out.println("Tồn kho: " + product.getStock());
-        System.out.println("Giá: " + product.getPrice());
-    }
 }

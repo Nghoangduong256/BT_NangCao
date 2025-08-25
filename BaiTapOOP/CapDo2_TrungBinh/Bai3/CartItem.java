@@ -1,4 +1,4 @@
-package BaiTapOOP.CapDo1_DonGian.Bai3;
+package BaiTapOOP.CapDo2_TrungBinh.Bai3;
 
 public class CartItem {
     private Product product;

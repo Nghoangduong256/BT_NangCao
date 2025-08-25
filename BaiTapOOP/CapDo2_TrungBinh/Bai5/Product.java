@@ -1,10 +1,17 @@
-package BaiTapOOP.CapDo1_DonGian.Bai3;
+package BaiTapOOP.CapDo2_TrungBinh.Bai5;
 
 public class Product {
     private String name;
-    private int price;
+    private float price;
     private String category;
-    private int stock;
+    private Review review;
+
+    //Cóntructor
+    public Product(String name, float price, String category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 
     // Getter & Setter
     public String getName() {
@@ -15,11 +22,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -31,12 +38,5 @@ public class Product {
         this.category = category;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
 
 }

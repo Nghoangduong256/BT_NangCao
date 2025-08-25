@@ -1,4 +1,4 @@
-package BaiTapOOP.CapDo1_DonGian.Bai4;
+package BaiTapOOP.CapDo2_TrungBinh.Bai4;
 
 public class Order {
     private String orderId;
@@ -56,7 +56,7 @@ public class Order {
     }
 
     public static void updateOrderStatus(Order[] orders, String orderId, Status status){
-        Order updatedOrder = ;
+        Order updatedOrder = new Order(null, null, null, 0, null);
         for (int i = 0; i < orders.length; i++){
             if (orders[i].getOrderId().equals(orderId)){
                 orders[i].setStatus(status);

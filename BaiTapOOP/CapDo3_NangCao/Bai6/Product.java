@@ -1,10 +1,18 @@
-package BaiTapOOP.CapDo1_DonGian.Bai1;
+package BaiTapOOP.CapDo3_NangCao.Bai6;
 
 public class Product {
     private String name;
     private long price;
     private String category;
     private int stock;
+
+    //Constructor
+    public Product(String name, long price, String category, int stock) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.stock = stock;
+    }
 
     // Getter & Setter
     public String getName() {
@@ -39,7 +47,7 @@ public class Product {
         this.stock = stock;
     }
 
-    public static void thongTinSanPham(Product product){
+    public  void thongTinSanPham(Product product){
         System.out.println("Thông tin của sản phẩm");
         System.out.println("Tên sản phẩm: " + product.getName());
         System.out.println("Loại sản phẩm: " + product.getCategory());
