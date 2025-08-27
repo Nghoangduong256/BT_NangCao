@@ -8,11 +8,14 @@ public class Cart {
 
     public void add_product(CartItem cartItem){
         this.cart.add(cartItem);
+        System.out.println("==============");
+        System.out.println("Đã thêm sản phẩm: " + cartItem.getProduct().getName());
     };
 
     public void remove_product(CartItem cartItem){
         this.cart.remove(cartItem);
-        System.out.println("Đã xóa sản phẩm: " + cartItem + " khỏi giỏ hàng");
+        System.out.println("==============");
+        System.out.println("Đã xóa sản phẩm: " + cartItem.getProduct().getName() + " khỏi giỏ hàng");
     };
 
     public long get_total_price (){
