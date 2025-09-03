@@ -1,8 +1,10 @@
 package BaiTapOOP.CapDo3_NangCao.Bai8;
 
-public interface Discount {
+import java.util.List;
 
-    float apply_discount(Product product, float percentage);
+public abstract class Discount {
 
-    float apply_bulk_discount(Cart cart);
+    abstract float apply_discount(Product product, float percentage);
+
+    abstract int apply_bulk_discount(List<CartItem> cart);
 }

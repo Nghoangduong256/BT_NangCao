@@ -22,7 +22,7 @@ public class Cart {
         long totalPrice = 0;
 
         for (int i = 0; i < cart.size(); i++){
-            totalPrice = cart.get(i).getProduct().getPrice() * cart.get(i).getQuantity();
+            totalPrice += cart.get(i).getProduct().getPrice() * cart.get(i).getQuantity();
         }
 
         return totalPrice;

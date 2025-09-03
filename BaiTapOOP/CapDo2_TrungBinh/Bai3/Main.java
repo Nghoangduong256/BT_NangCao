@@ -32,12 +32,12 @@ public class Main {
         cart.add_product(cartItem3);
 
 
-        //Xóa khỏi giỏ hàng
-        cart.remove_product(cartItem2);
-        System.out.println("Trạng thái giỏ hàng:");
-        for (int i = 0; i < cart.cart.size(); i++){
-            System.out.println(cart.cart.get(i).getProduct().getName() + ", số lượng: " + cart.cart.get(i).getQuantity());
-        }
+//        //Xóa khỏi giỏ hàng
+//        cart.remove_product(cartItem2);
+//        System.out.println("Trạng thái giỏ hàng:");
+//        for (int i = 0; i < cart.cart.size(); i++){
+//            System.out.println(cart.cart.get(i).getProduct().getName() + ", số lượng: " + cart.cart.get(i).getQuantity());
+//        }
 
         //Tính tổng giá tiền
         System.out.println("Tổng giá tiền của giỏ hàng: " + cart.get_total_price() + "VND");

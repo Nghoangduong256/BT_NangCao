@@ -1,5 +1,7 @@
 package BaiTapOOP.CapDo3_NangCao.Bai8;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Product ps5 = new Product("PlayStation®5", 13300000, "Video Games Consoles", 15, 0.1f);
@@ -18,9 +20,19 @@ public class Main {
         cart.add_product(cartItem3);
 
         //Tính tổng giá tiền
-        System.out.println("Tổng giá tiền trước giảm giá: " + cart.get_total_price() + "VND");
-        System.out.println("Áp dụng giảm giá 1) (Theo sản phẩm): ");
-        System.out.println("");
+        int items = 0;
+        for (int i = 0; i < cart.cart.size(); i++) {
+            items += cart.cart.get(i).getQuantity();
+        }
+
+        System.out.println("Tiến hành thanh toán: ");
+        if (cart.cart.size() <= 3){
+            System.out.println("Áp dụng khuyến mãi cho từng mặt hàng!");
+            System.out.println("Tổng: " + cart.get_total_price(items) + "VND");
+        } else {
+            System.out.println("Áp dụng thanh toán theo tổng giá trị đơn hàng!");
+            System.out.println("Tổng: " + cart.get_total_price(items) + "VND");
+        }
 
     }
 }
