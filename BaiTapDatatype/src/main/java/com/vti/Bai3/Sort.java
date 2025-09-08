@@ -22,11 +22,11 @@ public class Sort {
 
     // Methods
     public void bubbleSort() {
-        String numberToString = String.valueOf(this.number);
-        char[] arr = numberToString.toCharArray();
+        String str = String.valueOf(this.number);
+        char[] arr = str.toCharArray();
         int[] numberArray = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            numberArray[i] = (int) arr[i];
+            numberArray[i] = Character.getNumericValue(arr[i]);
         }
 
         int temp, counter, index;
@@ -44,7 +44,7 @@ public class Sort {
         }
 
         for (int i = 0; i < numberArray.length; i++){
-            System.out.println(numberArray[i] + ",");
+            System.out.print(numberArray[i] + ",");
         }
     }
 }
