@@ -1,4 +1,4 @@
-package com.vti.Bai5;
+package ChuaBai.Bai5;
 
 import java.util.ArrayList;
 import java.util.Scanner;
