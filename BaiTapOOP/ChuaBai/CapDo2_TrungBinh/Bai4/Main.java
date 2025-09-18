@@ -1,7 +1,8 @@
 package BaiTapOOP.ChuaBai.CapDo2_TrungBinh.Bai4;
 
-import static BaiTapOOP.CapDo2_TrungBinh.Bai4.Status.DELIVERED;
-import static BaiTapOOP.CapDo2_TrungBinh.Bai4.Status.PROCESSING;
+
+import static BaiTapOOP.ChuaBai.CapDo2_TrungBinh.Bai4.Status.DELIVERED;
+import static BaiTapOOP.ChuaBai.CapDo2_TrungBinh.Bai4.Status.PROCESSING;
 
 public class Main {
     public static void main(String[] args) {
