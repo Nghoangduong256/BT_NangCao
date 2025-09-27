@@ -3,36 +3,40 @@ package com.vti.BaiTapSet;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Quản lý danh sách sản phẩm bằng ArrayList
-        ArrayList<Product> productList = new ArrayList<>();
-        addProduct(productList, "Trụ đấm bốc boxing", 1900000, "Đấm bốc & Võ Tổng Hợp", 17);
-        addProduct(productList, "Xà kép Parallettes Dip Pocorrys", 1890000, "Thiết Bị Thể Thao", 301);
-        addProduct(productList,"PARAMIUM | Parallettes Tập Calisthenics", 364000, "Thiết Bị Thể Thao", 76);
-        addProduct(productList, "Tạ tay điều chỉnh Loại 1 Welike", 1150000, "Thiết Bị Thể Thao", 1);
-        addProduct(productList, "Áo Thun Calisthenics Chiến binh Samurai", 387000, "Áo Thun", 11);
-        addProduct(productList, "Tạ tay điều chỉnh Loại 1 Welike", 1150000, "Thiết Bị Thể Thao", 1);
-        addProduct(productList, "Xà kép Parallettes Dip Pocorrys", 1890000, "Thiết Bị Thể Thao", 301);
+
+        Product product1 = new Product("Trụ đấm bốc boxing", 1900000, "Đấm bốc & Võ Tổng Hợp", 17);
+        Product product2 = new Product("Xà kép Parallettes Dip Pocorrys", 1890000, "Thiết Bị Thể Thao", 301);
+        Product product3 = new Product("PARAMIUM | Parallettes Tập Calisthenics", 364000, "Thiết Bị Thể Thao", 76);
+        Product product4 = new Product("Tạ tay điều chỉnh Loại 1 Welike", 1150000, "Thiết Bị Thể Thao", 1);
+        Product product5 = new Product("Áo Thun Calisthenics Chiến binh Samurai", 387000, "Áo Thun", 11);
+        Product product6 = new Product("Tạ tay điều chỉnh Loại 1 Welike", 1150000, "Thiết Bị Thể Thao", 1);
+        Product product7 = new Product("Xà kép Parallettes Dip Pocorrys", 1890000, "Thiết Bị Thể Thao", 301);
+        Product p8  = new Product("Giày chạy bộ Adidas Ultraboost", 3200000, "Chạy bộ", 40);
+        Product p9  = new Product("Bóng đá UHV 2.07", 790000, "Bóng đá", 65);
+        Product p10 = new Product("Găng tay thủ môn Nike Grip3", 1150000, "Bóng đá", 25);
 
 
-        printProduct(productList);
 
-        deleteProduct(productList, "Xà kép Parallettes Dip Pocorrys");
-
-        printProduct(productList);
-
-        findMaxPrice(productList);
-
-        filterProductByCategory(productList, "Thiết Bị Thể Thao");
-
-        sortToMaxPrice(productList);
+        /* 1. Quản lý danh sách sản phẩm bằng ArrayList */
+        HashSet<Product> productList = new HashSet<>();
+        productList.add(product1);
+        productList.add(product2);
+        productList.add(product3);
+        productList.add(product4);
+        productList.add(product5);
+        productList.add(product6);
+        productList.add(product7);
+        productList.add(p8);
+        productList.add(p9);
+        productList.add(p10);
 
         // HashSet để check trùng
         HashSet<String> seen = new HashSet<>();
         int duplicateCount = 0;
-
         for (Product product : productList) {
             if (!seen.add(product.getName())) {
                 // nếu add() trả về false nghĩa là đã tồn tại
@@ -40,86 +44,43 @@ public class Main {
                 System.out.println("Sản phẩm trùng: " + product.getName());
             }
         }
-
         System.out.println("Tổng số sản phẩm trùng: " + duplicateCount);
-    }
 
-    public static void addProduct(ArrayList<Product> productList, String name, int price, String category, int stock){
-        Product product = new Product(null, 0 , null, 0);
-        product.setName(name);
-        product.setCategory(category);
-        product.setPrice(price);
-        product.setStock(stock);
-        productList.add(product);
-    }
-
-    public static void deleteProduct(ArrayList<Product> productList, String productName){
-        Product foundProduct = null;
+        //Dùng TreeSet<String> để lưu danh mục sản phẩm theo thứ tự bảng chữ cái.
+        TreeSet<String> categories = new TreeSet<>();
         for (Product product : productList){
-            if (product.getName().equals(productName)) {
-                foundProduct = product;
-            }
+            categories.add(product.getCategory());
+        }
+        System.out.println("== Danh sách hạng mục sản phẩm ==");
+        for (String str : categories){
+            System.out.println(str);
         }
 
-        if (foundProduct != null){
-            productList.remove(foundProduct);
-            System.out.println("Xóa thành công sản phẩm");
+        /* 7. Lưu danh sách khách hàng duy nhất */
+        User user1 = new User("dangblack", "dang@gmail.com", "$2a$10$W2neF9");
+        User user2 = new User("quanganh", "anh@gmail.com", "6Agi6kAKVq");
+        User user3 = new User("vanchien", "chien@gmail.com", "8q3fec5dHW8KUA");
+        User user4 = new User("DuongClone", "dang@gmail.com", "pop123");
+
+        HashSet<User> userList = new HashSet<>();
+        addUser(userList, user1);
+        addUser(userList, user2);
+        addUser(userList, user3);
+        addUser(userList, user4);
+
+        System.out.println("\n== Danh sách khách hàng ==");
+        for (User u : userList) {
+            System.out.println(u);
+        }
+    }
+
+    // Hàm thêm user và check email trùng
+    public static void addUser(HashSet<User> users, User user) {
+        if (users.contains(user)) {
+            System.out.println("Email '" + user.getEmail() + "' đã tồn tại. Không thể thêm " + user.getUsername());
         } else {
-            System.out.println("Không tìm thấy sản phẩm!");
-        }
-    }
-
-    public static void printProduct(ArrayList<Product> productList){
-        for (Product product: productList){
-            System.out.println(product);
-        }
-    }
-
-    // 2. Tìm sản phẩm có giá cao nhất trong danh sách
-    public static void findMaxPrice (ArrayList<Product> productList) {
-        Product maxPriceProduct = null;
-        int maxPrice = 0;
-        for (int i = 0; i < productList.size(); i++){
-            if (productList.get(i).getPrice() > maxPrice) {
-                maxPrice = productList.get(i).getPrice();
-                 maxPriceProduct = productList.get(i);
-            }
-        }
-
-        if (maxPriceProduct != null){
-            System.out.println("Sản phẩm đắt tiến nhất: " + maxPriceProduct);
-        } else {
-            System.out.println("Không tìm thấy sản phẩm!");
-        }
-    }
-
-    //3. Lọc sản phẩm theo danh mục
-    public static void filterProductByCategory (ArrayList<Product> productList, String category){
-        ArrayList<Product> filterProduct = new ArrayList<>();
-        for (Product product : productList){
-            if (product.getCategory().equals(category)) {
-                filterProduct.add(product);
-            }
-        }
-
-        if (filterProduct.size() == 0){
-            System.out.println("Không tìm thấy sản phẩm!");
-        } else {
-            System.out.println("List sản phẩm " + category + ":");
-            for (Product product : filterProduct){
-                System.out.println(product);
-            }
-
-        }
-    }
-
-    // 4. Sắp xếp danh sách sản phẩm theo giá tăng dần
-    public static void sortToMaxPrice (ArrayList<Product> productList) {
-        productList.sort(Comparator.comparingInt(Product::getPrice));
-
-        System.out.println("Danh sách sản phẩm sau khi sắp xếp theo giá tăng dần");
-        for (Product product : productList){
-            System.out.println(product);
+            users.add(user);
+            System.out.println("Thêm thành công: " + user.getUsername());
         }
     }
 }
