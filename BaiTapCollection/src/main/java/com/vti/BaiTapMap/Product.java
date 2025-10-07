@@ -1,13 +1,15 @@
-package com.vti.BaiTapSet;
+package com.vti.BaiTapMap;
 
 public class Product {
+    private String productId;
     private String name;
     private int price;
     private String category;
     private int stock;
 
     // Constructor
-    public Product(String name, int price, String category, int stock) {
+    public Product(String productId, String name, int price, String category, int stock) {
+        this.productId = productId;
         this.name = name;
         this.price = price;
         this.category = category;
@@ -15,6 +17,14 @@ public class Product {
     }
 
     // Getter & Setter
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
     public String getName() {
         return name;
     }
@@ -51,23 +61,11 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "productId='" + productId + '\'' +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", stock=" + stock +
                 '}';
-    }
-
-    //Định nghĩa lại hàm equals
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-
-        if (!(obj instanceof Product))
-            return false;
-
-        Product product = (Product) obj;
-        return name == product.getName();
     }
 }
